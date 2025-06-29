@@ -535,27 +535,7 @@ export default function LandingPage() {
                 </LoadingButton>
               </div>
 
-              {/* Animated Stats */}
-              <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">
-                    <AnimatedCounter end={10000} suffix="+" />
-                  </div>
-                  <div className="text-sm text-white/80">Apps Built</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">
-                    <AnimatedCounter end={99} suffix="%" />
-                  </div>
-                  <div className="text-sm text-white/80">Success Rate</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">
-                    <AnimatedCounter end={5000} suffix="+" />
-                  </div>
-                  <div className="text-sm text-white/80">Developers</div>
-                </div>
-              </div>
+
 
               {/* Scroll Indicator */}
               <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:scale-125 transition-transform duration-300">

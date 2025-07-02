@@ -1,285 +1,433 @@
-# 🤖 VibePilot - AI Vibe Coding Assistant
+# 🚀 VibePilot - Autonomous AI Development Platform
 
-> **The first Meta-AI Assistant that controls other AI coding assistants to build projects autonomously**
+> **The revolutionary AI platform that autonomously builds web applications through intelligent visual observation and context-aware development**
 
-VibePilot is a revolutionary platform that acts as a higher-level AI agent to manage and control other AI coding assistants (Cursor, GitHub Copilot, WindSurf, etc.) on your behalf. Sit back, relax, and watch your projects build themselves while you focus on other activities.
+VibePilot is a next-generation autonomous development platform featuring an AI agent that visually observes, understands, and builds web applications based on user-defined context. The platform combines intelligent prompt generation, real-time visual monitoring, automatic error resolution, and progress tracking to deliver a seamless autonomous development experience.
 
-![VibePilot Preview](https://img.shields.io/badge/Status-Beta-orange) ![React](https://img.shields.io/badge/React-19.x-blue) ![Next.js](https://img.shields.io/badge/Next.js-15.x-black) ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue) ![Supabase](https://img.shields.io/badge/Supabase-Database-green)
+![VibePilot Preview](https://img.shields.io/badge/Status-Alpha-red) ![React](https://img.shields.io/badge/React-19.x-blue) ![Next.js](https://img.shields.io/badge/Next.js-15.x-black) ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue) ![Supabase](https://img.shields.io/badge/Supabase-Database-green)
 
-## 🚀 Features
+## 🎯 Platform Overview
 
-### 🧠 **AI Agent Controller**
-- **Meta-AI Assistant**: First-of-its-kind AI that controls other AI assistants
-- **Multi-AI Support**: Works with Cursor, GitHub Copilot, WindSurf, Codeium, Tabnine
-- **Intelligent Orchestration**: Sends contextual prompts and manages responses
-- **Error Handling**: Automatic retry mechanisms and fallback strategies
+### **User Journey**
+```
+Landing Page → Authentication → Dashboard → Feature Selection → Autonomous Development
+```
 
-### 📝 **Smart Prompt Generator**  
-- **Context-Aware**: Analyzes your project structure and generates optimal prompts
-- **Error-Specific**: Creates targeted fix prompts for detected issues
-- **Learning System**: Improves prompt quality based on success rates
-- **Template Library**: Pre-built prompts for common development tasks
+**Core Flow:**
+1. **Landing & Authentication**: Users discover the platform and authenticate
+2. **Dashboard Access**: Central hub with 6 powerful features
+3. **Context Definition**: Users describe their project vision
+4. **Autonomous Building**: AI agent builds while visually observing
+5. **Progress Monitoring**: Real-time tracking and intervention capabilities
 
-### 👁️ **Real-time Project Monitor**
-- **Live Monitoring**: Watches file changes, compilation errors, test results
-- **Progress Tracking**: Visual progress indicators and build status
-- **Performance Metrics**: Success rates, response times, error counts
-- **Activity Logs**: Detailed logs of all AI interactions
+## ✨ Core Dashboard Features
 
-### 🔄 **Auto Error Resolution**
-- **Syntax Fixing**: Automatically detects and fixes syntax errors
-- **Dependency Resolution**: Handles missing imports and package issues
-- **Code Optimization**: Suggests and implements performance improvements
-- **Test Failure Recovery**: Analyzes and fixes failing tests
+### 🤖 **1. Viber - AI Development Agent**
+*The autonomous AI agent that sees, understands, and builds*
 
-### 📊 **Project Dashboard & Analytics**
-- **Real-time Status**: Live project monitoring and control interface
-- **Analytics**: Detailed metrics on AI performance and project progress
-- **Session Management**: Start, stop, and configure AI sessions
-- **Team Collaboration**: (Coming soon) Share projects and collaborate
+**How it Works:**
+- **Context Analysis**: Reads project context from Context Composer
+- **Visual Observation**: Uses Visual Observer to see webapp behavior
+- **Intelligent Prompting**: Generates contextual prompts based on visual feedback
+- **Autonomous Decision Making**: Decides next steps by analyzing feature completeness
+- **User Approval Loop**: Seeks user approval for major feature implementations
+- **Error Resolution**: Integrates with Error Fixer for automatic issue resolution
 
-## 🛠️ Tech Stack
+**User Flow:**
+```
+Context Definition → Visual Analysis → Prompt Generation → Implementation → Feature Testing → Approval Request → Next Feature/Fix → Repeat
+```
 
-### **Frontend**
-- **Next.js 15.2.4** - React framework with App Router
-- **TypeScript** - Type-safe development
-- **Tailwind CSS** - Utility-first styling
-- **shadcn/ui** - Beautiful component library
-- **Radix UI** - Accessible primitives
+**Key Capabilities:**
+- 🧠 Context-aware prompt generation
+- 👁️ Visual webapp observation and analysis
+- 🔄 Autonomous development cycles
+- ✅ Feature completion validation
+- 🛠️ Automatic error detection and fixing
+- ⏸️ User-controlled stop/revert functionality
 
-### **Backend & Database**
-- **Supabase** - PostgreSQL database with real-time features
-- **Row Level Security** - Secure data access
-- **Authentication** - Built-in auth with social providers
-- **APIs** - RESTful endpoints for AI agent control
+---
+
+### 📝 **2. Context Composer - Project Definition Module**
+*Define your vision, guide the AI*
+
+**Purpose:**
+Central input module where users define their complete project vision and requirements.
+
+**Features:**
+- **Rich Text Editor**: Describe your app idea in plain English
+- **README.md Upload**: Import existing project documentation
+- **User Stories**: Define features and user journeys
+- **Tech Stack Selection**: Choose technologies (Next.js + Supabase, React + Firebase, etc.)
+- **Update Capability**: Modify context between development sessions (not during active sessions)
+
+**User Flow:**
+```
+New Project → Idea Description → Tech Stack → User Stories → README Upload → Context Save → AI Mental Model Created
+```
+
+**Input Methods:**
+- 📝 Natural language descriptions
+- 📄 README.md file upload
+- 📋 Structured user stories
+- ⚡ Tech stack selection wizard
+- 🔄 Iterative context refinement
+
+---
+
+### 👁️ **3. Visual Observer - Real-time Monitoring**
+*The AI's eyes on your application*
+
+**Autonomous Capabilities:**
+- **Real-time Monitoring**: Watches webapp behavior and user interactions
+- **Error Detection**: Catches terminal errors, build failures, console logs
+- **Feature Validation**: Determines if implemented features work as expected
+- **Behavioral Analysis**: Understands user flow and interaction patterns
+- **Performance Monitoring**: Tracks loading times, responsiveness, and errors
+
+**Integration Points:**
+- 🔗 **Viber**: Provides visual feedback for prompt generation
+- 🔧 **Error Fixer**: Sends detected errors for automatic resolution
+- 📊 **Progress Level**: Reports feature completion status
+
+**Monitoring Scope:**
+- 💻 Terminal output and build processes
+- 🌐 Browser preview and user interactions
+- 📊 Console logs and error messages
+- 🔍 Network requests and API responses
+- ⚡ Performance metrics and loading states
+
+---
+
+### 🛠️ **4. Error Fixer - Autonomous Problem Resolution**
+*Zero-intervention error resolution*
+
+**Automatic Resolution:**
+- **Error Detection**: Receives error data from Visual Observer
+- **Context Analysis**: Understands error context within the project
+- **Solution Generation**: Creates targeted fixes based on error patterns
+- **Auto-Implementation**: Applies fixes without user intervention
+- **Validation**: Confirms fixes through Visual Observer feedback
+
+**Error Types Handled:**
+- 🐛 Syntax and compilation errors
+- 📦 Dependency and import issues
+- 🔗 API and integration failures
+- 🎨 UI/UX rendering problems
+- ⚡ Performance bottlenecks
+
+**User Experience:**
+- **Zero Copy-Paste**: No manual error handling required
+- **Silent Resolution**: Errors fixed in background
+- **Notification System**: Optional alerts for major fixes
+- **Learning System**: Improves with each resolved error
+
+---
+
+### 📊 **5. Progress Level - Development Tracking**
+*Visualize your project's journey*
+
+**Progress Metrics:**
+- **Feature Completion**: Percentage of context requirements implemented
+- **Quality Score**: Code quality and best practices adherence
+- **Test Coverage**: Automated and manual testing completeness
+- **Performance Index**: Application speed and optimization level
+- **Error Resolution Rate**: Success rate of automatic fixes
+
+**Visualization:**
+- 🎯 Overall completion percentage
+- 📈 Feature-by-feature progress bars
+- 🏆 Quality metrics dashboard
+- 📋 Remaining tasks checklist
+- ⏰ Estimated completion time
+
+---
+
+### ⚙️ **6. Settings - Platform Configuration**
+*Customize your development environment*
+
+**User Settings:**
+- 👤 Profile and account management
+- 🎨 Theme and UI preferences
+- 🔔 Notification preferences
+- 💰 Billing and subscription management
+- 🔐 Security and privacy settings
+
+**Development Configuration:**
+- 🤖 AI agent behavior settings
+- ⚡ Prompt generation frequency
+- 🎯 Quality thresholds
+- 🔄 Auto-save intervals
+- 📊 Analytics preferences
+
+**IDE Extensions:**
+- **Cursor Integration**: Native Viber integration for Cursor IDE
+- **Windsurf Support**: Seamless Windsurf editor integration
+- **VS Code Extension**: Full Visual Studio Code compatibility
+- **Other AI Editors**: Universal compatibility layer
+- **Custom Integrations**: API for custom editor extensions
+
+**Extension Features:**
+- 🔗 Direct IDE communication
+- 📝 Prompt injection capabilities
+- 👁️ Local file monitoring
+- 🔄 Bi-directional sync
+- ⚡ Real-time collaboration
+
+## 🛠️ Technical Architecture
+
+### **Frontend Stack**
+```typescript
+// Core Technologies
+Next.js 15.2.4         // React framework with App Router
+TypeScript             // Type-safe development
+Tailwind CSS           // Utility-first styling
+shadcn/ui              // Beautiful component library
+Radix UI               // Accessible primitives
+
+// State Management
+Zustand                // Lightweight state management
+React Query            // Server state management
+WebSocket              // Real-time communication
+
+// UI/UX
+Framer Motion          // Smooth animations
+React Hook Form        // Form handling
+Sonner                 // Toast notifications
+```
+
+### **Backend Infrastructure**
+```sql
+-- Database & Backend
+Supabase               -- PostgreSQL with real-time features
+Row Level Security     -- Secure data access
+Supabase Auth          -- Authentication with social providers
+Supabase Functions     -- Serverless edge functions
+Supabase Storage       -- File storage and CDN
+
+-- API Layer
+RESTful APIs           -- Standard REST endpoints
+GraphQL                -- Complex query optimization
+WebSocket              -- Real-time communication
+Server-Sent Events     -- Live updates
+```
 
 ### **AI & Automation**
-- **OpenAI API** - Advanced language model integration
-- **WebSocket** - Real-time communication
-- **File Watching** - Automatic change detection
-- **Browser Automation** - Extension integration
+```python
+# AI Services
+OpenAI GPT-4           # Advanced language model
+Claude 3.5 Sonnet      # Code analysis and generation
+Anthropic AI           # Reasoning and planning
+Custom Fine-tuning     # Domain-specific models
 
-### **Extensions**
-- **VS Code Extension** - Native IDE integration
-- **Cross-platform** - Cursor, WindSurf, and more
-- **Universal Protocol** - Works with any AI coding assistant
-
-## 🎯 How It Works
-
-### 1. **Project Setup**
-```
-User → Upload/Create Project → VibePilot Analyzes → Generate Build Plan
+# Automation
+Puppeteer              # Browser automation
+Node.js Workers        # Background processing
+File System Watchers   # Real-time file monitoring
+Docker Containers      # Isolated environments
 ```
 
-### 2. **Autonomous Building**  
-```
-VibePilot → Generate Smart Prompts → Send to AI Assistant → Monitor Progress → Handle Errors → Continue Building
-```
-
-### 3. **User Monitoring**
-```
-User → Watch Live Dashboard → See Real-time Progress → Intervene if Needed → Enjoy Free Time
-```
-
-## 🚀 Quick Start
-
-### **1. Clone & Install**
-```bash
-git clone https://github.com/murtuza777/VibePilot.git
-cd vibePilot-v0
-npm install
-```
-
-### **2. Environment Setup**
-Create `.env.local`:
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
-### **3. Database Setup**
-```bash
-# Run the database schema in your Supabase project
-# Copy contents of supabase-schema.sql to Supabase SQL Editor
-```
-
-### **4. Start Development**
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see the magic! ✨
-
-### **5. Install VS Code Extension**
-```bash
-cd extensions/vscode
-npm install
-npm run compile
-# Install in VS Code via Extensions > Install from VSIX
-```
-
-## 🎮 Usage
-
-### **Web Dashboard**
-1. **Sign up/Login** to your VibePilot account
-2. **Create a Project** by clicking "New Project"
-3. **Configure** your preferred AI assistant and tech stack  
-4. **Start AI Session** to begin autonomous building
-5. **Monitor Progress** via the real-time dashboard
-
-### **VS Code Extension**
-1. **Install** the VibePilot extension
-2. **Open** your project workspace
-3. **Run Command**: `VibePilot: Start AI Session`
-4. **Watch** as AI builds your project automatically
-5. **Intervene** when needed via custom prompts
-
-## 🔧 Configuration
-
-### **AI Assistant Settings**
+### **Extension Ecosystem**
 ```json
 {
-  "aiAssistant": "cursor",           // cursor | copilot | windsurf | codeium | tabnine
-  "autoMonitoring": true,            // Enable automatic error detection
-  "promptInterval": 5,               // Seconds between automated prompts
-  "maxRetries": 3,                   // Max retry attempts for failed prompts
-  "successThreshold": 0.8            // Required success rate
+  "supported_editors": [
+    "cursor",
+    "windsurf", 
+    "vscode",
+    "webstorm",
+    "sublime",
+    "atom"
+  ],
+  "protocols": {
+    "lsp": "Language Server Protocol",
+    "dap": "Debug Adapter Protocol",
+    "websocket": "Real-time communication",
+    "http": "REST API integration"
+  }
 }
 ```
 
-### **Project Types**
-- **Web App**: React, Next.js, Vue, Angular
-- **Mobile App**: React Native, Flutter
-- **API/Backend**: Node.js, Python, Go, Rust
-- **Desktop App**: Electron, Tauri
-- **AI/ML**: Python, TensorFlow, PyTorch
-- **Custom**: Define your own stack
+## 🚀 Development Roadmap
 
-## 📈 Platform Modes
+### **Phase 1: Core Foundation** ✅
+- ✅ Authentication and user management
+- ✅ Database schema and APIs
+- ✅ Basic dashboard interface
+- ✅ Project creation and management
+- ✅ Theme and UI system
 
-### **🌐 Web App Mode**
-- Full-featured dashboard
-- Cloud-based processing  
-- Project management
-- Team collaboration
-- Real-time monitoring
+### **Phase 2: Feature Implementation** 🚧
+- 🔄 Context Composer with rich text editor
+- 🔄 Visual Observer real-time monitoring
+- 🔄 Viber AI agent core logic
+- 🔄 Error Fixer automation system
+- 🔄 Progress Level tracking
 
-### **🧩 Extension Mode**
-- Lightweight integration
-- Direct IDE control
-- Local processing
-- Seamless workflow
-- Offline capabilities
+### **Phase 3: AI Integration** 🎯
+- 🎯 Advanced prompt generation algorithms
+- 🎯 Visual analysis and understanding
+- 🎯 Autonomous decision-making logic
+- 🎯 Error pattern recognition
+- 🎯 Learning and improvement systems
 
-### **🔄 Hybrid Mode**
-- Best of both worlds
-- Cloud intelligence + Local execution
-- Cross-device sync
-- Backup and restore
+### **Phase 4: Extensions & Scaling** 🚀
+- 🚀 IDE extension development
+- 🚀 Multi-language support
+- 🚀 Team collaboration features
+- 🚀 Enterprise integrations
+- 🚀 Marketplace ecosystem
 
 ## 📁 Project Structure
 
 ```
 vibePilot-v0/
 ├── app/
-│   ├── api/                     # API routes
-│   │   ├── ai/                 # AI agent endpoints
-│   │   └── projects/           # Project management
-│   ├── globals.css             # Global styles with theme support
-│   ├── layout.tsx              # Root layout with ThemeProvider
-│   └── page.tsx                # Landing page with dashboard integration
+│   ├── api/
+│   │   ├── ai/
+│   │   │   ├── generate-plan/      # AI planning endpoints
+│   │   │   ├── start-build/        # Build initiation
+│   │   │   └── route.ts            # Main AI agent API
+│   │   └── projects/               # Project management APIs
+│   ├── globals.css                 # Global styles
+│   ├── layout.tsx                  # Root layout
+│   └── page.tsx                    # Landing page
 ├── components/
-│   ├── ui/                     # shadcn/ui components
-│   ├── Dashboard.tsx           # Main dashboard interface
-│   ├── CreateProject.tsx       # Project creation modal
-│   └── theme-provider.tsx      # Dark theme configuration
+│   ├── Dashboard.tsx               # Main dashboard
+│   ├── CreateProject.tsx           # Project creation
+│   ├── features/
+│   │   ├── ContextComposer.tsx     # Feature 2: Context input
+│   │   ├── ErrorFixer.tsx          # Feature 4: Error resolution
+│   │   ├── ProgressLevel.tsx       # Feature 5: Progress tracking
+│   │   ├── SettingsPanel.tsx       # Feature 6: Configuration
+│   │   ├── Viber.tsx               # Feature 1: AI agent
+│   │   └── VisualObserver.tsx      # Feature 3: Visual monitoring
+│   ├── ui/                         # shadcn/ui components
+│   └── theme-provider.tsx          # Theme system
 ├── extensions/
-│   └── vscode/                 # VS Code extension
-│       ├── src/extension.ts    # Main extension logic
-│       ├── package.json        # Extension manifest
-│       └── tsconfig.json       # TypeScript config
+│   └── vscode/                     # VS Code extension
+│       ├── src/extension.ts        # Extension logic
+│       ├── package.json            # Extension manifest
+│       └── tsconfig.json           # TypeScript config
 ├── hooks/
-│   ├── useAuth.ts              # Authentication hook
-│   └── use-toast.ts            # Toast notifications
+│   ├── useAuth.ts                  # Authentication
+│   ├── use-mobile.tsx              # Mobile detection
+│   └── use-toast.ts                # Notifications
 ├── lib/
-│   ├── ai-agent.ts             # Core AI agent controller
-│   ├── supabase.ts             # Database client
-│   └── utils.ts                # Utility functions
-├── public/                     # Static assets
-├── supabase-schema.sql         # Complete database schema
-└── package.json                # Dependencies and scripts
+│   ├── ai-agent.ts                 # Core AI logic
+│   ├── local-ai.ts                 # Local AI processing
+│   ├── supabase.ts                 # Database client
+│   └── utils.ts                    # Utilities
+├── docs/
+│   ├── PLATFORM_ARCHITECTURE.md   # Technical docs
+│   └── SETUP.md                    # Setup guide
+└── supabase-schema.sql             # Database schema
 ```
 
-## 🎉 Why VibePilot?
+## 🚀 Quick Start
 
-### **🥇 First Meta-AI Assistant**
-- No other platform controls AI assistants like this
-- Revolutionary approach to automated development
-- Bridges the gap between AI tools and productivity
+### **1. Installation**
+```bash
+git clone https://github.com/murtuza777/VibePilot.git
+cd vibePilot-v0
+npm install
+# or
+pnpm install
+```
 
-### **⏰ True Time Freedom**
-- Let AI handle the coding while you focus on strategy
-- Perfect for busy developers and entrepreneurs
-- Ideal for learning by watching AI work
+### **2. Environment Setup**
+```bash
+# Create .env.local
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+OPENAI_API_KEY=your_openai_key
+ANTHROPIC_API_KEY=your_anthropic_key
+```
 
-### **🔌 Universal Integration**
-- Works with ANY AI coding assistant
-- No vendor lock-in
-- Future-proof architecture
+### **3. Database Setup**
+```bash
+# Import the schema to your Supabase project
+# Copy contents of supabase-schema.sql to Supabase SQL Editor and run
+```
 
-### **📚 Continuous Learning**
-- Improves with every project
-- Learns your coding patterns
-- Adapts to your preferences
+### **4. Development Server**
+```bash
+npm run dev
+# or
+pnpm dev
+```
 
-## 🛣️ Roadmap
+### **5. Extension Development** (Optional)
+```bash
+cd extensions/vscode
+npm install
+npm run compile
+# Load extension in VS Code for testing
+```
 
-### **Phase 1: Foundation** ✅
-- ✅ Web app with authentication
-- ✅ Database schema and APIs
-- ✅ Basic AI agent controller
-- ✅ VS Code extension framework
-- ✅ Project management system
+## 🎮 Usage Guide
 
-### **Phase 2: AI Integration** 🚧
-- 🔄 Real AI assistant integrations
-- 🔄 Advanced prompt generation
-- 🔄 Error detection and auto-fixing
-- 🔄 Live project monitoring
+### **Getting Started**
+1. **Sign Up**: Create your VibePilot account
+2. **Project Setup**: Use Context Composer to define your project
+3. **Start Building**: Activate Viber to begin autonomous development
+4. **Monitor Progress**: Watch Visual Observer and Progress Level
+5. **Intervene**: Use Settings to customize behavior
 
-### **Phase 3: Advanced Features** 🎯
-- 🎯 Multi-AI orchestration
-- 🎯 Advanced analytics
-- 🎯 Machine learning optimization
-- 🎯 Cross-platform extensions
+### **Best Practices**
+- 📝 **Detailed Context**: Provide comprehensive project descriptions
+- 🎯 **Clear Requirements**: Define specific features and functionality
+- 🔄 **Iterative Refinement**: Update context between sessions
+- 👁️ **Monitor Progress**: Regularly check Visual Observer feedback
+- ⚙️ **Optimize Settings**: Configure AI behavior for your workflow
 
-### **Phase 4: Enterprise** 🚀
-- 🚀 Team collaboration
-- 🚀 Enterprise integrations
-- 🚀 Custom AI models
-- 🚀 Marketplace ecosystem
+## 💡 Why VibePilot?
 
-## 💰 Pricing
+### **🎯 Autonomous Intelligence**
+- First platform to combine visual observation with AI development
+- True autonomous building without constant supervision
+- Intelligent decision-making based on visual feedback
 
-### **🆓 Free Tier**
-- Up to 3 projects
-- Basic AI assistant integration
-- Community support
-- Limited prompts per month
+### **👁️ Visual Understanding**
+- AI that actually "sees" your application
+- Real-time behavior analysis and adaptation
+- Context-aware prompt generation
 
-### **💎 Pro Tier** ($19/month)
-- Unlimited projects
-- All AI assistants
-- Priority support
-- Advanced analytics
-- Custom prompts
+### **🔄 Complete Automation**
+- Zero-intervention error resolution
+- Automatic feature validation
+- Continuous improvement through learning
 
-### **🏢 Enterprise** ($99/month)
-- Team collaboration
-- Custom integrations
-- Dedicated support
-- On-premise deployment
-- SLA guarantees
+### **🛠️ Developer-Friendly**
+- Works with existing tools and workflows
+- Universal IDE integration
+- Customizable and extensible
+
+## 🔮 Future Vision
+
+### **Advanced AI Capabilities**
+- **Multi-modal Understanding**: Visual, audio, and code comprehension
+- **Predictive Development**: Anticipating user needs and requirements
+- **Cross-platform Intelligence**: Mobile, web, and desktop development
+- **Team AI Orchestration**: Multiple AI agents working together
+
+### **Enterprise Features**
+- **Team Collaboration**: Real-time multi-developer support
+- **Enterprise Security**: SOC2, HIPAA, and custom compliance
+- **Custom AI Models**: Domain-specific fine-tuned models
+- **Integration Ecosystem**: CI/CD, monitoring, and deployment tools
+
+## 📞 Contact & Support
+
+**Creator**: Murtuza - [@murtuza777](https://github.com/murtuza777)
+
+**Project Repository**: [https://github.com/murtuza777/VibePilot](https://github.com/murtuza777/VibePilot)
+
+**Documentation**: [Platform Architecture](docs/PLATFORM_ARCHITECTURE.md) | [Setup Guide](docs/SETUP.md)
+
+## 📝 License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
 
 ## 🤝 Contributing
 
@@ -291,26 +439,10 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
-
-This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
-
-## 📞 Contact
-
-Murtuza - [@murtuza777](https://github.com/murtuza777)
-
-Project Link: [https://github.com/murtuza777/VibePilot](https://github.com/murtuza777/VibePilot)
-
-## 🔗 Links
-
-- **GitHub**: [VibePilot Repository](https://github.com/murtuza777/VibePilot)
-- **Demo**: [Live Demo](https://vibepilot.vercel.app)
-- **Documentation**: [Full Documentation](docs/README.md)
-
 ---
 
-**Built with ❤️ by the VibePilot Team**
+**Built with ❤️ and autonomous AI**
 
-*"The future of coding is autonomous. The future is VibePilot."*
+*"Building the future, one autonomous feature at a time."*
 
-⭐ **Star this repository if you believe in the future of AI-assisted development!** 
+⭐ **Star this repository if you believe in autonomous development!**

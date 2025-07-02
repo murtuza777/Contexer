@@ -76,15 +76,6 @@
   .text-foreground {
     color: hsl(var(--foreground)) !important;
   }
-  
-  /* Ensure input text is visible */
-  input, textarea {
-    color: white !important;
-  }
-  
-  input::placeholder, textarea::placeholder {
-    color: rgba(255, 255, 255, 0.6) !important;
-  }
 }
 
 /* Enhanced Custom Animations */

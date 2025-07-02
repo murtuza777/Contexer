@@ -3,7 +3,9 @@
 import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
+import { useAuth } from "@/hooks/useAuth"
 import { Button } from "@/components/ui/button"
+import Dashboard from "@/components/Dashboard"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -226,8 +228,9 @@ const FloatingActionButton = ({
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrollY, setScrollY] = useState(0)
-  const [currentView, setCurrentView] = useState<"landing" | "login" | "signup">("landing")
+  const [currentView, setCurrentView] = useState<"landing" | "login" | "signup" | "dashboard">("landing")
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const { user, loading: authLoading } = useAuth()
   const [isLoading, setIsLoading] = useState(true)
   const [sectionsLoading, setSectionsLoading] = useState({
     hero: true,
@@ -300,6 +303,15 @@ export default function LandingPage() {
       }
     })
   }, [currentView, isMounted])
+
+  // Show dashboard if user is authenticated
+  if (user && !authLoading && currentView === "landing") {
+    return <Dashboard />
+  }
+
+  if (currentView === "dashboard") {
+    return <Dashboard />
+  }
 
   if (currentView === "login") {
     return <LoginPage onBack={() => setCurrentView("landing")} onSignup={() => setCurrentView("signup")} />
@@ -894,14 +906,25 @@ function LoginPage({ onBack, onSignup }: { onBack: () => void; onSignup: () => v
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const { signIn } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    // Simulate API call with realistic timing
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    setError(null)
+    
+    const { data, error } = await signIn(email, password)
+    
+    if (error) {
+      setError(typeof error === 'string' ? error : (error as any)?.message || 'An error occurred during login')
+    } else {
+      // Login successful - redirect or update UI
+      console.log("Login successful:", data)
+      onBack() // Go back to landing page for now
+    }
+    
     setIsLoading(false)
-    console.log("Login:", { email, password })
   }
 
   return (
@@ -929,6 +952,11 @@ function LoginPage({ onBack, onSignup }: { onBack: () => void; onSignup: () => v
           </CardDescription>
         </CardHeader>
         <CardContent className="relative z-10">
+          {error && (
+            <div className="mb-4 p-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-200 text-sm">
+              {error}
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm font-semibold text-white drop-shadow-sm">
@@ -1020,17 +1048,31 @@ function SignupPage({ onBack, onLogin }: { onBack: () => void; onLogin: () => vo
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [passwordStrength, setPasswordStrength] = useState(0)
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
+  const { signUp } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match")
+      setError("Passwords do not match")
       return
     }
+    
     setIsLoading(true)
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    setError(null)
+    setSuccess(null)
+    
+    const { data, error } = await signUp(formData.email, formData.password, formData.name)
+    
+    if (error) {
+      setError(typeof error === 'string' ? error : (error as any)?.message || 'An error occurred during signup')
+    } else {
+      setSuccess("Account created successfully! Please check your email for verification.")
+      console.log("Signup successful:", data)
+    }
+    
     setIsLoading(false)
-    console.log("Signup:", formData)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1090,6 +1132,16 @@ function SignupPage({ onBack, onLogin }: { onBack: () => void; onLogin: () => vo
           </CardDescription>
         </CardHeader>
         <CardContent className="relative z-10">
+          {error && (
+            <div className="mb-4 p-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-200 text-sm">
+              {error}
+            </div>
+          )}
+          {success && (
+            <div className="mb-4 p-3 bg-green-500/20 border border-green-500/30 rounded-lg text-green-200 text-sm">
+              {success}
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="name" className="block text-sm font-semibold text-white drop-shadow-sm">

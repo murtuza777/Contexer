@@ -1,4 +1,4 @@
-# VibePilot Setup Guide
+# Contexer Setup Guide
 
 ## 🚀 Quick Start
 
@@ -49,18 +49,18 @@ pnpm dev
 - **Advanced Code Generation** - AI code writing
 - **Smart Feature Detection** - AI requirement analysis
 
-## 🧪 Testing VibePilot
+## 🧪 Testing Contexer
 
 1. **Start the app:** `npm run dev`
 2. **Create an account** (if Supabase is configured)
 3. **Create a new project** using templates or manual setup
-4. **Click "Start AI Build"** to see VibePilot in action
+4. **Click "Start AI Build"** to see Contexer in action
 5. **Watch the live dashboard** as it simulates autonomous building
 
 ## 🛠️ Development Architecture
 
 ```
-VibePilot/
+Contexer/
 ├── app/
 │   ├── api/ai/           # AI agent endpoints
 │   │   ├── route.ts      # Main AI controller
@@ -70,7 +70,7 @@ VibePilot/
 ├── components/
 │   ├── CreateProject.tsx # Enhanced project wizard
 │   ├── Dashboard.tsx     # Main control center  
-│   └── VibePilotDashboard.tsx # Live build interface
+│   └── ContexterDashboard.tsx # Live build interface
 ├── lib/
 │   ├── ai-agent.ts       # Core AI logic
 │   └── supabase.ts       # Database client
@@ -95,4 +95,4 @@ Key tables:
 
 ---
 
-**Need help?** The VibePilot MVP is functional without any API keys for testing the core autonomous build experience! 
+**Need help?** The Contexer MVP is functional without any API keys for testing the core autonomous build experience! 

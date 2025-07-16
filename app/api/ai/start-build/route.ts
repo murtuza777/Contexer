@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ 
       success: true, 
       sessionId: session.id,
-      message: 'VibePilot build session started'
+      message: 'Contexer build session started'
     })
 
   } catch (error) {

@@ -1,4 +1,4 @@
-// Mock data and local storage utilities for VibePilot
+// Mock data and local storage utilities for Contexer
 // This allows the app to work without database setup
 
 export interface Project {
@@ -36,10 +36,10 @@ export interface RecentPrompt {
 
 // Local Storage Keys
 const STORAGE_KEYS = {
-  PROJECTS: 'vibepilot_projects',
-  SESSIONS: 'vibepilot_sessions', 
-  PROMPTS: 'vibepilot_prompts',
-  USER: 'vibepilot_user'
+    PROJECTS: 'contexer_projects',
+  SESSIONS: 'contexer_sessions',
+  PROMPTS: 'contexer_prompts',
+  USER: 'contexer_user'
 }
 
 // Mock User
@@ -49,8 +49,8 @@ export const getMockUser = () => {
   
   const user = {
     id: 'mock-user-' + Date.now(),
-    email: 'demo@vibepilot.com',
-    full_name: 'VibePilot Demo User'
+      email: 'demo@contexer.com',
+  full_name: 'Contexer Demo User'
   }
   
   localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user))

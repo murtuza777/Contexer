@@ -73,7 +73,7 @@ export default function ContextComposer() {
 
   useEffect(() => {
     // Load saved contexts from localStorage
-    const saved = localStorage.getItem('vibepilot-contexts')
+    const saved = localStorage.getItem('contexer-contexts')
     if (saved) {
       setSavedContexts(JSON.parse(saved))
     }
@@ -97,7 +97,7 @@ export default function ContextComposer() {
     }
 
     setSavedContexts(updatedContexts)
-    localStorage.setItem('vibepilot-contexts', JSON.stringify(updatedContexts))
+    localStorage.setItem('contexer-contexts', JSON.stringify(updatedContexts))
     setProjectContext(contextToSave)
     setIsEditing(false)
   }

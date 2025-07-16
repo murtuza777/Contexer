@@ -1,4 +1,4 @@
-// Local AI simulation for VibePilot
+// Local AI simulation for Contexer
 // This provides intelligent build plan generation without requiring API keys
 
 export interface BuildTask {

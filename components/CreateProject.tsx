@@ -326,7 +326,7 @@ export default function CreateProject({ onProjectCreated, onCancel }: CreateProj
           <CardTitle className="text-white flex items-center justify-between">
             <span className="flex items-center">
               <Sparkles className="w-6 h-6 mr-2" />
-              Create New VibePilot Project
+              Create New Contexer Project
             </span>
             <Button 
               variant="ghost" 
@@ -338,7 +338,7 @@ export default function CreateProject({ onProjectCreated, onCancel }: CreateProj
             </Button>
           </CardTitle>
           <CardDescription className="text-white/70">
-            VibePilot will build your project autonomously. Just describe what you want!
+            Contexer will build your project autonomously. Just describe what you want!
           </CardDescription>
           
           {/* Progress Steps */}

@@ -4,16 +4,16 @@ import * as fs from 'fs'
 import axios from 'axios'
 import * as chokidar from 'chokidar'
 
-interface VibePilotConfig {
+interface ContexterConfig {
   apiUrl: string
   aiAssistant: string
   autoMonitoring: boolean
   promptInterval: number
 }
 
-class VibePilotExtension {
+class ContexterExtension {
   private context: vscode.ExtensionContext
-  private config: VibePilotConfig
+  private config: ContexterConfig
   private sessionActive = false
   private fileWatcher: chokidar.FSWatcher | null = null
   private statusBarItem: vscode.StatusBarItem
@@ -22,7 +22,7 @@ class VibePilotExtension {
   constructor(context: vscode.ExtensionContext) {
     this.context = context
     this.config = this.loadConfig()
-    this.outputChannel = vscode.window.createOutputChannel('VibePilot')
+    this.outputChannel = vscode.window.createOutputChannel('Contexer')
     this.statusBarItem = vscode.window.createStatusBarItem(
       vscode.StatusBarAlignment.Left,
       100
@@ -30,8 +30,8 @@ class VibePilotExtension {
     this.updateStatusBar()
   }
 
-  private loadConfig(): VibePilotConfig {
-    const config = vscode.workspace.getConfiguration('vibepilot')
+  private loadConfig(): ContexterConfig {
+    const config = vscode.workspace.getConfiguration('contexer')
     return {
       apiUrl: config.get('apiUrl', 'http://localhost:3000'),
       aiAssistant: config.get('aiAssistant', 'cursor'),
@@ -42,7 +42,7 @@ class VibePilotExtension {
 
   async startSession() {
     if (this.sessionActive) {
-      vscode.window.showWarningMessage('VibePilot session is already active')
+      vscode.window.showWarningMessage('Contexer session is already active')
       return
     }
 
@@ -71,25 +71,25 @@ class VibePilotExtension {
         this.startFileWatcher(workspaceFolder.uri.fsPath)
       }
 
-      this.outputChannel.appendLine(`🚀 VibePilot session started for project: ${projectData.name}`)
+      this.outputChannel.appendLine(`🚀 Contexer session started for project: ${projectData.name}`)
       this.outputChannel.show()
 
       vscode.window.showInformationMessage(
-        `VibePilot session started! AI assistant "${this.config.aiAssistant}" is now monitoring your project.`
+        `Contexer session started! AI assistant "${this.config.aiAssistant}" is now monitoring your project.`
       )
 
       // Set context for when clause
-      vscode.commands.executeCommand('setContext', 'vibepilot.sessionActive', true)
+      vscode.commands.executeCommand('setContext', 'contexer.sessionActive', true)
 
     } catch (error) {
       this.outputChannel.appendLine(`❌ Failed to start session: ${error}`)
-      vscode.window.showErrorMessage(`Failed to start VibePilot session: ${error}`)
+      vscode.window.showErrorMessage(`Failed to start Contexer session: ${error}`)
     }
   }
 
   async stopSession() {
     if (!this.sessionActive) {
-      vscode.window.showWarningMessage('No active VibePilot session')
+      vscode.window.showWarningMessage('No active Contexer session')
       return
     }
 
@@ -105,22 +105,22 @@ class VibePilotExtension {
         this.fileWatcher = null
       }
 
-      this.outputChannel.appendLine('🛑 VibePilot session stopped')
+      this.outputChannel.appendLine('🛑 Contexer session stopped')
       
-      vscode.window.showInformationMessage('VibePilot session stopped')
+      vscode.window.showInformationMessage('Contexer session stopped')
       
       // Set context for when clause
-      vscode.commands.executeCommand('setContext', 'vibepilot.sessionActive', false)
+      vscode.commands.executeCommand('setContext', 'contexer.sessionActive', false)
 
     } catch (error) {
       this.outputChannel.appendLine(`❌ Failed to stop session: ${error}`)
-      vscode.window.showErrorMessage(`Failed to stop VibePilot session: ${error}`)
+      vscode.window.showErrorMessage(`Failed to stop Contexer session: ${error}`)
     }
   }
 
   async sendCustomPrompt() {
     if (!this.sessionActive) {
-      vscode.window.showWarningMessage('Please start a VibePilot session first')
+      vscode.window.showWarningMessage('Please start a Contexer session first')
       return
     }
 
@@ -161,8 +161,8 @@ class VibePilotExtension {
 
   async openDashboard() {
     const panel = vscode.window.createWebviewPanel(
-      'vibepilotDashboard',
-      'VibePilot Dashboard',
+      'contexerDashboard',
+      'Contexer Dashboard',
       vscode.ViewColumn.Beside,
       {
         enableScripts: true,
@@ -175,7 +175,7 @@ class VibePilotExtension {
 
   async autoFixErrors() {
     if (!this.sessionActive) {
-      vscode.window.showWarningMessage('Please start a VibePilot session first')
+      vscode.window.showWarningMessage('Please start a Contexer session first')
       return
     }
 
@@ -294,15 +294,15 @@ class VibePilotExtension {
 
   private updateStatusBar() {
     if (this.sessionActive) {
-      this.statusBarItem.text = '$(robot) VibePilot Active'
+      this.statusBarItem.text = '$(robot) Contexer Active'
       this.statusBarItem.color = '#00ff00'
-      this.statusBarItem.tooltip = 'VibePilot is monitoring your project'
-      this.statusBarItem.command = 'vibepilot.stopSession'
+      this.statusBarItem.tooltip = 'Contexer is monitoring your project'
+              this.statusBarItem.command = 'contexer.stopSession'
     } else {
-      this.statusBarItem.text = '$(robot) VibePilot Inactive'
+      this.statusBarItem.text = '$(robot) Contexer Inactive'
       this.statusBarItem.color = '#999999'
-      this.statusBarItem.tooltip = 'Click to start VibePilot session'
-      this.statusBarItem.command = 'vibepilot.startSession'
+      this.statusBarItem.tooltip = 'Click to start Contexer session'
+      this.statusBarItem.command = 'contexer.startSession'
     }
     this.statusBarItem.show()
   }
@@ -330,7 +330,7 @@ class VibePilotExtension {
         </style>
       </head>
       <body>
-        <h1>🤖 VibePilot Dashboard</h1>
+                  <h1>🤖 Contexer Dashboard</h1>
         <div class="status ${this.sessionActive ? 'active' : 'inactive'}">
           Status: ${this.sessionActive ? 'Active' : 'Inactive'}
         </div>
@@ -352,23 +352,23 @@ class VibePilotExtension {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  const vibePilot = new VibePilotExtension(context)
+  const contexer = new ContexterExtension(context)
 
   // Register commands
   const commands = [
-    vscode.commands.registerCommand('vibepilot.startSession', () => vibePilot.startSession()),
-    vscode.commands.registerCommand('vibepilot.stopSession', () => vibePilot.stopSession()),
-    vscode.commands.registerCommand('vibepilot.sendPrompt', () => vibePilot.sendCustomPrompt()),
-    vscode.commands.registerCommand('vibepilot.openDashboard', () => vibePilot.openDashboard()),
-    vscode.commands.registerCommand('vibepilot.autoFix', () => vibePilot.autoFixErrors())
+    vscode.commands.registerCommand('contexer.startSession', () => contexer.startSession()),
+    vscode.commands.registerCommand('contexer.stopSession', () => contexer.stopSession()),
+    vscode.commands.registerCommand('contexer.sendPrompt', () => contexer.sendCustomPrompt()),
+    vscode.commands.registerCommand('contexer.openDashboard', () => contexer.openDashboard()),
+    vscode.commands.registerCommand('contexer.autoFix', () => contexer.autoFixErrors())
   ]
 
   commands.forEach(command => context.subscriptions.push(command))
-  context.subscriptions.push(vibePilot)
+  context.subscriptions.push(contexer)
 
   // Set initial context
-  vscode.commands.executeCommand('setContext', 'vibepilot.enabled', true)
-  vscode.commands.executeCommand('setContext', 'vibepilot.sessionActive', false)
+  vscode.commands.executeCommand('setContext', 'contexer.enabled', true)
+  vscode.commands.executeCommand('setContext', 'contexer.sessionActive', false)
 }
 
 export function deactivate() {

@@ -109,7 +109,7 @@ export default function Dashboard() {
         <div className="flex items-center justify-between">
             {sidebarOpen && (
           <div>
-                <h2 className="text-xl font-bold text-white">VibePilot</h2>
+                <h2 className="text-xl font-bold text-white">Contexer</h2>
                 <p className="text-sm text-navy-300">AI Development Platform</p>
           </div>
             )}

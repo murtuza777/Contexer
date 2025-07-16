@@ -72,7 +72,7 @@ export default function SettingsPanel() {
     },
     {
       name: 'VS Code',
-      description: 'Visual Studio Code extension for VibePilot',
+      description: 'Visual Studio Code extension for Contexer',
       icon: <Monitor className="w-6 h-6" />,
       status: 'available',
       version: '2.1.0',
@@ -173,7 +173,7 @@ export default function SettingsPanel() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-black">Settings</h1>
-                <p className="text-gray-600">Customize your VibePilot experience</p>
+                <p className="text-gray-600">Customize your Contexer experience</p>
               </div>
             </div>
             {isLoading && (

@@ -3,7 +3,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 
 export const metadata: Metadata = {
-  title: 'VibePilot - AI-Powered Coding Assistant',
+  title: 'Contexer - AI-Powered Coding Assistant',
   description: 'Build full applications from just an idea with our AI-powered coding assistant',
   generator: 'v0.dev',
 }

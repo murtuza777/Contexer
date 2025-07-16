@@ -29,6 +29,9 @@ import {
   Users,
   Clock,
   Loader2,
+  Bot,
+  FileText,
+  Eye,
 } from "lucide-react"
 
 // Skeleton Components
@@ -367,7 +370,7 @@ export default function LandingPage() {
                 <Code2 className="h-8 w-8 text-blue-400 group-hover:text-blue-300 transition-all duration-300 group-hover:rotate-12" />
                 <div className="absolute inset-0 bg-blue-400 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
               </div>
-              <span className="ml-2 text-xl font-bold text-white drop-shadow-lg">VibePilot</span>
+              <span className="ml-2 text-xl font-bold text-white drop-shadow-lg">Contexer</span>
             </div>
 
             <div className="hidden md:flex items-center space-x-8">
@@ -536,6 +539,7 @@ export default function LandingPage() {
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </LoadingButton>
+                
                 <LoadingButton
                   variant="outline"
                   size="lg"
@@ -652,32 +656,32 @@ export default function LandingPage() {
               ? [...Array(4)].map((_, index) => <SkeletonCard key={index} />)
               : [
                   {
-                    icon: <Bug className="h-12 w-12" />,
-                    title: "Auto Debugging",
-                    description: "AI automatically detects and fixes errors in your code as it builds",
-                    gradient: "from-red-500 to-pink-500",
-                    stats: "99.9% accuracy",
-                  },
-                  {
-                    icon: <Terminal className="h-12 w-12" />,
-                    title: "Live Terminal",
-                    description: "Watch real-time terminal output and build processes as they happen",
-                    gradient: "from-green-500 to-emerald-500",
-                    stats: "Real-time updates",
-                  },
-                  {
-                    icon: <Rocket className="h-12 w-12" />,
-                    title: "One-click Deploy",
-                    description: "Deploy your finished app to production with a single click",
+                    icon: <Bot className="h-12 w-12" />,
+                    title: "Viber AI Agent",
+                    description: "Intelligent AI development agent that visually observes, understands, and builds applications autonomously",
                     gradient: "from-blue-500 to-cyan-500",
-                    stats: "< 30 seconds",
+                    stats: "AI-Powered",
                   },
                   {
-                    icon: <Save className="h-12 w-12" />,
-                    title: "Save & Resume",
-                    description: "Pause your project anytime and resume exactly where you left off",
+                    icon: <FileText className="h-12 w-12" />,
+                    title: "Context Composer",
+                    description: "Smart context definition tool that helps you compose and manage project requirements and specifications",
+                    gradient: "from-green-500 to-emerald-500",
+                    stats: "Context-Aware",
+                  },
+                  {
+                    icon: <Eye className="h-12 w-12" />,
+                    title: "Visual Observer",
+                    description: "Real-time visual monitoring system that observes your application interface and provides intelligent feedback",
                     gradient: "from-purple-500 to-violet-500",
-                    stats: "Auto-save enabled",
+                    stats: "Live Monitoring",
+                  },
+                  {
+                    icon: <Bug className="h-12 w-12" />,
+                    title: "Error Fixer",
+                    description: "Automated error detection and resolution system that identifies and fixes issues as they occur",
+                    gradient: "from-red-500 to-pink-500",
+                    stats: "Auto-Fix",
                   },
                 ].map((feature, index) => (
                   <Card
@@ -748,7 +752,7 @@ export default function LandingPage() {
                     </CardTitle>
                     <div className="text-5xl font-bold mb-2 text-white drop-shadow-lg">$0</div>
                     <CardDescription className="text-white font-medium drop-shadow-sm">
-                      Perfect for trying out VibePilot
+                      Perfect for trying out Contexer
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4 relative z-10">
@@ -844,7 +848,7 @@ export default function LandingPage() {
             <div className="col-span-2">
               <div className="flex items-center mb-4 group cursor-pointer hover:scale-105 active:scale-95 transition-transform duration-300">
                 <Code2 className="h-8 w-8 text-blue-400 group-hover:text-blue-300 transition-all duration-300 group-hover:rotate-12" />
-                <span className="ml-2 text-xl font-bold text-white drop-shadow-lg">VibePilot</span>
+                <span className="ml-2 text-xl font-bold text-white drop-shadow-lg">Contexer</span>
               </div>
               <p className="text-white font-medium max-w-md leading-relaxed drop-shadow-sm">
                 The AI-powered coding assistant that builds full applications from just an idea. Focus on what matters
@@ -887,7 +891,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="border-t border-white/20 mt-8 pt-8 text-center text-white font-medium drop-shadow-sm">
-            <p>&copy; 2024 VibePilot. All rights reserved. Built with ❤️ for developers.</p>
+            <p>&copy; 2024 Contexer. All rights reserved. Built with ❤️ for developers.</p>
           </div>
         </div>
       </footer>
@@ -905,9 +909,10 @@ function LoginPage({ onBack, onSignup }: { onBack: () => void; onSignup: () => v
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const { signIn } = useAuth()
+  const { signIn, signInWithGoogle } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -927,6 +932,19 @@ function LoginPage({ onBack, onSignup }: { onBack: () => void; onSignup: () => v
     setIsLoading(false)
   }
 
+  const handleGoogleSignIn = async () => {
+    setIsGoogleLoading(true)
+    setError(null)
+    
+    const { data, error } = await signInWithGoogle()
+    
+    if (error) {
+      setError(typeof error === 'string' ? error : (error as any)?.message || 'An error occurred during Google sign in')
+      setIsGoogleLoading(false)
+    }
+    // If successful, the user will be redirected by Google OAuth flow
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-black flex items-center justify-center px-4 relative overflow-hidden">
       {/* Enhanced Background */}
@@ -944,7 +962,7 @@ function LoginPage({ onBack, onSignup }: { onBack: () => void; onSignup: () => v
               <Code2 className="h-10 w-10 text-blue-400 group-hover:rotate-12 transition-transform duration-300" />
               <div className="absolute inset-0 bg-blue-400 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
             </div>
-            <span className="ml-3 text-2xl font-bold text-white drop-shadow-lg">VibePilot</span>
+            <span className="ml-3 text-2xl font-bold text-white drop-shadow-lg">Contexer</span>
           </div>
           <CardTitle className="text-3xl text-white font-bold mb-2 drop-shadow-md">Welcome Back</CardTitle>
           <CardDescription className="text-white font-medium text-lg drop-shadow-sm">
@@ -957,6 +975,7 @@ function LoginPage({ onBack, onSignup }: { onBack: () => void; onSignup: () => v
               {error}
             </div>
           )}
+          
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm font-semibold text-white drop-shadow-sm">
@@ -1013,6 +1032,42 @@ function LoginPage({ onBack, onSignup }: { onBack: () => void; onSignup: () => v
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </LoadingButton>
           </form>
+          
+          {/* Divider */}
+          <div className="mt-6 mb-6 flex items-center">
+            <div className="flex-grow border-t border-white/20"></div>
+            <span className="flex-shrink-0 px-4 text-white/60 text-sm font-medium">or</span>
+            <div className="flex-grow border-t border-white/20"></div>
+          </div>
+
+          {/* Google Sign In Button */}
+          <LoadingButton
+            onClick={handleGoogleSignIn}
+            isLoading={isGoogleLoading}
+            className="w-full bg-white hover:bg-gray-100 text-gray-900 font-semibold border-0 shadow-xl hover:shadow-lg py-3 text-lg relative overflow-hidden group transition-all duration-300"
+            variant="outline"
+          >
+            <span className="relative z-10 flex items-center justify-center">
+              {isGoogleLoading ? (
+                <div className="flex items-center justify-center">
+                  <Loader2 className="animate-spin h-5 w-5 mr-2" />
+                  Signing in with Google...
+                </div>
+              ) : (
+                <>
+                  <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                  </svg>
+                  Continue with Google
+                </>
+              )}
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-100/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </LoadingButton>
+
           <div className="mt-8 text-center space-y-4">
             <p className="text-white font-medium drop-shadow-sm">
               Don't have an account?{" "}
@@ -1046,11 +1101,12 @@ function SignupPage({ onBack, onLogin }: { onBack: () => void; onLogin: () => vo
     confirmPassword: "",
   })
   const [isLoading, setIsLoading] = useState(false)
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [passwordStrength, setPasswordStrength] = useState(0)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
-  const { signUp } = useAuth()
+  const { signUp, signInWithGoogle } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -1073,6 +1129,20 @@ function SignupPage({ onBack, onLogin }: { onBack: () => void; onLogin: () => vo
     }
     
     setIsLoading(false)
+  }
+
+  const handleGoogleSignIn = async () => {
+    setIsGoogleLoading(true)
+    setError(null)
+    setSuccess(null)
+    
+    const { data, error } = await signInWithGoogle()
+    
+    if (error) {
+      setError(typeof error === 'string' ? error : (error as any)?.message || 'An error occurred during Google sign in')
+      setIsGoogleLoading(false)
+    }
+    // If successful, the user will be redirected by Google OAuth flow
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1124,7 +1194,7 @@ function SignupPage({ onBack, onLogin }: { onBack: () => void; onLogin: () => vo
               <Code2 className="h-10 w-10 text-blue-400 group-hover:rotate-12 transition-transform duration-300" />
               <div className="absolute inset-0 bg-blue-400 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
             </div>
-            <span className="ml-3 text-2xl font-bold text-white drop-shadow-lg">VibePilot</span>
+            <span className="ml-3 text-2xl font-bold text-white drop-shadow-lg">Contexer</span>
           </div>
           <CardTitle className="text-3xl text-white font-bold mb-2 drop-shadow-md">Create Account</CardTitle>
           <CardDescription className="text-white font-medium text-lg drop-shadow-sm">
@@ -1142,6 +1212,7 @@ function SignupPage({ onBack, onLogin }: { onBack: () => void; onLogin: () => vo
               {success}
             </div>
           )}
+          
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="name" className="block text-sm font-semibold text-white drop-shadow-sm">
@@ -1248,6 +1319,42 @@ function SignupPage({ onBack, onLogin }: { onBack: () => void; onLogin: () => vo
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </LoadingButton>
           </form>
+          
+          {/* Divider */}
+          <div className="mt-6 mb-6 flex items-center">
+            <div className="flex-grow border-t border-white/20"></div>
+            <span className="flex-shrink-0 px-4 text-white/60 text-sm font-medium">or</span>
+            <div className="flex-grow border-t border-white/20"></div>
+          </div>
+
+          {/* Google Sign In Button */}
+          <LoadingButton
+            onClick={handleGoogleSignIn}
+            isLoading={isGoogleLoading}
+            className="w-full bg-white hover:bg-gray-100 text-gray-900 font-semibold border-0 shadow-xl hover:shadow-lg py-3 text-lg relative overflow-hidden group transition-all duration-300"
+            variant="outline"
+          >
+            <span className="relative z-10 flex items-center justify-center">
+              {isGoogleLoading ? (
+                <div className="flex items-center justify-center">
+                  <Loader2 className="animate-spin h-5 w-5 mr-2" />
+                  Signing up with Google...
+                </div>
+              ) : (
+                <>
+                  <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                  </svg>
+                  Continue with Google
+                </>
+              )}
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-100/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </LoadingButton>
+
           <div className="mt-8 text-center space-y-4">
             <p className="text-white font-medium drop-shadow-sm">
               Already have an account?{" "}

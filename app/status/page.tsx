@@ -9,6 +9,7 @@ import { useAuth } from '@/hooks/useAuth'
 export default function StatusPage() {
   const [redisStatus, setRedisStatus] = useState<any>(null)
   const [socketStatus, setSocketStatus] = useState<any>(null)
+  const [dockerStatus, setDockerStatus] = useState<any>(null)
   const [loading, setLoading] = useState(false)
   const { supabaseConfigured } = useAuth()
 
@@ -44,10 +45,28 @@ export default function StatusPage() {
     }
   }
 
+  const checkDockerStatus = async () => {
+    setLoading(true)
+    try {
+      const response = await fetch('/api/docker-health')
+      const data = await response.json()
+      setDockerStatus(data)
+    } catch (error) {
+      setDockerStatus({
+        success: false,
+        dockerConnected: false,
+        error: 'Failed to check Docker status'
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const checkAllServices = async () => {
     await Promise.all([
       checkRedisStatus(),
-      checkSocketStatus()
+      checkSocketStatus(),
+      checkDockerStatus()
     ])
   }
 
@@ -173,16 +192,36 @@ export default function StatusPage() {
             {/* Docker Status */}
             <div className="flex items-center justify-between p-3 border rounded-lg">
               <div>
-                <h4 className="font-semibold">Docker Environment</h4>
+                <h4 className="font-semibold">Docker Services</h4>
                 <p className="text-sm text-muted-foreground">
-                  Isolated project containers
+                  Local Redis, PostgreSQL and Container Environment
                 </p>
+                {dockerStatus?.containers && (
+                  <div className="text-xs text-muted-foreground mt-1">
+                    {dockerStatus.summary.running}/{dockerStatus.summary.total} containers running
+                  </div>
+                )}
               </div>
               <div className="text-right">
-                <Badge variant="outline">Manual Check Required</Badge>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Check: docker --version
-                </p>
+                {getStatusBadge(dockerStatus?.dockerConnected && dockerStatus?.allServicesRunning)}
+                {dockerStatus?.services && (
+                  <div className="text-xs mt-1 space-y-1">
+                    <div className={dockerStatus.services.redis ? 'text-green-600' : 'text-red-600'}>
+                      Redis: {dockerStatus.services.redis ? '✓' : '✗'}
+                    </div>
+                    <div className={dockerStatus.services.postgres ? 'text-green-600' : 'text-red-600'}>
+                      PostgreSQL: {dockerStatus.services.postgres ? '✓' : '✗'}
+                    </div>
+                    <div className={dockerStatus.services.redisUI ? 'text-green-600' : 'text-red-600'}>
+                      Redis UI: {dockerStatus.services.redisUI ? '✓' : '✗'}
+                    </div>
+                  </div>
+                )}
+                {dockerStatus?.error && (
+                  <p className="text-xs text-red-600 mt-1">
+                    {dockerStatus.error}
+                  </p>
+                )}
               </div>
             </div>
           </CardContent>

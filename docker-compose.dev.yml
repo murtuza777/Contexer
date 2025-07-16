@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7.2-alpine
+    container_name: contexer-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-contexer123}
+    volumes:
+      - redis_data:/data
+    networks:
+      - contexer-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: contexer-redis-ui
+    restart: unless-stopped
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-contexer123}
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    networks:
+      - contexer-network
+
+  # Postgres (if you want to run Supabase locally)
+  postgres:
+    image: postgres:15
+    container_name: contexer-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: contexer
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres123}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./supabase-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    networks:
+      - contexer-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Project containers will be created dynamically
+  # This is just a template for isolated project environments
+  project-template:
+    image: node:18-alpine
+    container_name: contexer-project-template
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - /app/node_modules
+    networks:
+      - contexer-network
+    profiles:
+      - template # This prevents it from starting by default
+
+volumes:
+  redis_data:
+  postgres_data:
+
+networks:
+  contexer-network:
+    driver: bridge 
